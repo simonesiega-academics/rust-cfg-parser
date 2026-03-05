@@ -1,82 +1,145 @@
-# MathSolver – Aritmetica con Rust e CFG
+<h1 align="center">
+  <img src="docs/assets/cfg-parser-logo.svg" alt="CFG Parser logo" width="220" height="220" />
+  <br />
+  CFG Parser
+</h1>
 
-**MathSolver** è un interprete per espressioni aritmetiche, sviluppato in **Rust**, che utilizza una **grammatica formale (CFG)** per analizzare ed eseguire il calcolo di espressioni matematiche complesse. Supporta numeri reali, potenze, radici, operazioni annidate e moltiplicazione implicita.
+<p align="center">
+A Rust CLI tool that parses and evaluates arithmetic expressions
+using a Context-Free Grammar (CFG) engine.
+</p>
 
----
+<p align="center">
+  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/stargazers"><img src="https://img.shields.io/github/stars/simonesiega-academics/rust-cfg-parser?style=social" alt="GitHub stars" /></a>
+  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/issues"><img src="https://img.shields.io/github/issues/simonesiega-academics/rust-cfg-parser" alt="Open issues" /></a>
+  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/pulls"><img src="https://img.shields.io/github/issues-pr/simonesiega-academics/rust-cfg-parser" alt="Open pull requests" /></a>
+  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/commits/master"><img src="https://img.shields.io/github/last-commit/simonesiega-academics/rust-cfg-parser" alt="Last commit" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/simonesiega-academics/rust-cfg-parser" alt="License" /></a>
+  <img src="https://img.shields.io/badge/rust-2024%20edition-black?logo=rust" alt="Rust 2024 edition" />
+</p>
 
-## Caratteristiche principali
+## Overview
 
-- Linguaggio: **Rust**
-- Parsing basato su **CFG** personalizzata
-- **Tokenizzazione e parsing separati**
-- Supporta:
-  - Somma, sottrazione, moltiplicazione, divisione
-  - Potenze (`^`) e radici ennesime (`$`)
-  - Moltiplicazione implicita: `2(3+4)` o `(1+2)(4-1)`
-  - Parentesi annidate e espressioni complesse
-- Sistema di **gestione errori avanzato**: divisione per zero, operatori invalidi, parentesi sbilanciate, ecc.
+CFG Parser is a Rust CLI project that tokenizes, parses, and evaluates arithmetic formulas based on a formal grammar.
+It supports nested expressions, implicit multiplication, exponentiation, and n-th root operations with explicit error handling.
 
----
+## Key Features
 
-## ⚙️ Come funziona
+- Formal CFG-driven parsing pipeline.
+- Separate tokenizer and parser/evaluator architecture.
+- Real-number support (`f64`) with operator precedence.
+- Implicit multiplication (`2(3+4)`, `(1+2)(4-1)`).
+- Power (`^`) and n-th root (`$`) with semantic validation.
+- Clear math/parsing error types for robust diagnostics.
 
-1. **Tokenizzazione**  
-   L’espressione viene analizzata e convertita in una sequenza di **token riconosciuti**, come numeri, operatori, parentesi, simboli di potenza o radice.
+## Supported Operators
 
-   ![Tokenizing expression](docs/example/tokenizer.png)
+| Operator | What it does | Example |
+| --- | --- | --- |
+| `+` | Adds two values | `3 + 2 =` |
+| `-` | Subtracts one value from another | `7 - 4 =` |
+| `*` | Multiplies two values | `6 * 5 =` |
+| `/` | Divides one value by another | `8 / 2 =` |
+| `^` | Raises a base to a power | `2 ^ 3 =` |
+| `$` | Computes the n-th root (`base $ index`) | `27 $ 3 =` |
+| `( )` | Groups expressions and controls precedence | `(1 + 2) * 3 =` |
+| `implicit *` | Multiplies adjacent terms without `*` | `2(3+4) =` |
 
-   ```markdown
-   Tokenizzazione dell’espressione: `(3 + 5 * (2 - 3) ^ 2) / (4 - 1) + -2 * (5 + 2) ^ 3 - 10 =
-   Tokenizzazione completata: [LeftParen, Number(3.0), Plus, Number(5.0), Multiply, LeftParen, Number(2.0), Minus, Nurber(3.0), RightParen, Caret, Number(2.0), RightParen, Divide, LeftParen, Number(4.0), Minus, Number(1.0), RightParen, Plus, Minus, Number(2.0), Multiply, LeftParen, Number(5.0), Plus, Number(2.0), RightParen, Caret, Nunber(3.0), Minus, Number(10.0), Equals]
+## Grammar Docs
 
-2. **Parsing con CFG**  
-   I token vengono passati a un parser che segue una **grammatica formale (CFG)** per determinare l’ordine corretto delle operazioni e calcolare il risultato.
+- Grammar details: [`Grammar`](docs/md/grammar.md)
+- Docker guide: [`Docker`](docs/md/docker.md)
+- Contribution guidelines: [`Contributing`](CONTRIBUTING.MD)
 
-   ![Parsing tokens](docs/example/parser.png)
+## Quick Start
 
-## 📚 Grammatica utilizzata (CFG)
+### Run with Rust
 
-F (Formula): espressione aritmetica completa, che deve terminare con il simbolo "="  
-- `(1+3) * 5 - 3 =`
+```bash
+cargo run
+```
 
-E (Espressione): gestisce somma e sottrazione tra blocchi (+, −), con precedenza minore
-- `((1+3) * 5) - 3 =`
+### Run Tests
 
-P (Prodotto): gestisce moltiplicazione (*), divisione (/) e moltiplicazione implicita
-- `2 * 3, 2(3+1), (1+2)(4-1), (2*3) / 6`
+```bash
+cargo test
+```
 
-U (Unità): gestisce le potenze (^) e le radici ennesime ($), con associatività a destra
-- `2^3, 27$3`
+## Docker Usage
 
-B (Base): rappresenta un valore elementare
-- Può essere un numero (unsigned number), una negazione (−), o un’espressione tra parentesi
+Build and run:
 
-## ❌ Errori gestiti
-1. Durante l’esecuzione:
-- DivisionByZero
-- OverflowError / UnderflowError
-- InvalidExponentiation o InvalidRoot
-- EvenRootOfNegative
-- ExpressionTooComplex (futuro)
+```bash
+docker build -t mathsolver .
+docker run --rm mathsolver
+```
 
-2.Durante il parsing/tokenizzazione:
-- InvalidNumber
-- UnexpectedEnd
-- InvalidExpression
-- UnmatchedParenthesis
-- UnexpectedToken
-- InvalidOperator
+Run with custom input (CLI argument):
 
-## Contribuire
+```bash
+docker run --rm mathsolver "(1 + 2) * 3 ="
+```
 
-Contribuzioni e miglioramenti sono i benvenuti! Apri una pull request per aggiunte, bugfix o nuove funzionalità. Si raccomanda di testare ogni modifica prima dell’invio.
+Run with custom input (environment variable):
 
-## Licenza
+```bash
+docker run --rm -e MATHSOLVER_INPUT="27 $ 3 =" mathsolver
+```
 
-Distribuito con licenza **MIT**. Vedi il file [LICENSE](LICENSE) per maggiori informazioni.
+For full Docker workflows, troubleshooting, and compose examples, see [`Docker docs`](docs/md/docker.md).
 
-## Contatti
+## Example Expression
 
-- **Autore**: Simone Siega  
-- **Email**: [simonesiega1@gmail.com](mailto:simonesiega1@gmail.com)  
-- **GitHub**: [simonesiega](https://github.com/simonesiega)
+Simple example:
+
+```text
+1 + 2 * 3 =
+```
+
+Expected output:
+
+```text
+Result: 7.000
+```
+
+Complex example:
+
+```text
+(3 + 5 * (2 - 3) ^ 2) / (4 - 1) + -2 * (5 + 2) ^ 3 - 10 =
+```
+
+Expected output:
+
+```text
+Result: -693.333
+```
+
+## Error Handling
+
+The parser reports structured errors such as:
+
+- Division by zero.
+- Invalid operators or malformed numbers.
+- Unmatched parentheses.
+- Invalid exponentiation/root cases.
+- Overflow and underflow conditions.
+
+## Contributing & support 🤝
+
+Contributions are welcome.
+
+- For bugs and feature requests, open an [Issue](https://github.com/simonesiega-academics/rust-cfg-parser/issues).
+- For code contributions, open a **Pull Request** with a clear description of the change and its rationale.
+- For direct contact, email me at [simonesiega1@gmail.com](mailto:simonesiega1@gmail.com) or reach out on [GitHub](https://github.com/simonesiega).
+
+## License
+
+This project is licensed under the MIT License. See [`LICENSE`](LICENSE).
+
+## Authors 🧑‍💻
+
+<p align="center">
+  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=simonesiega-academics/rust-cfg-parser&max=24&columns=12" alt="Contributors" />
+  </a>
+</p>
