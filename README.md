@@ -48,6 +48,7 @@ It supports nested expressions, implicit multiplication, exponentiation, and n-t
 ## Grammar Docs
 
 - Grammar details: [`Grammar`](docs/md/grammar.md)
+- Architecture overview: [`Architecture`](docs/md/architecture.md)
 - Docker guide: [`Docker`](docs/md/docker.md)
 - Contribution guidelines: [`Contributing`](CONTRIBUTING.MD)
 
