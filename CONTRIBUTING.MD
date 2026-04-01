@@ -19,7 +19,7 @@ If you are new to the project, read [`README.md`](README.md) first, then pick on
 | Step | Action |
 | --- | --- |
 | 1 | Fork the repository |
-| 2 | Create a branch from `main` |
+| 2 | Create a branch from `master` |
 | 3 | Implement one focused change |
 | 4 | Run checks locally |
 | 5 | Open a PR with context and rationale |
