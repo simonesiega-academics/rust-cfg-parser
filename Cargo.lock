@@ -3,7 +3,7 @@
 version = 4
 
 [[package]]
-name = "MathSolver"
+name = "cfg-parser"
 version = "0.1.0"
 dependencies = [
  "env_logger",

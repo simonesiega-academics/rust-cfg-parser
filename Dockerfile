@@ -11,6 +11,6 @@ FROM debian:bookworm-slim
 
 WORKDIR /app
 
-COPY --from=builder /app/target/release/MathSolver /usr/local/bin/mathsolver
+COPY --from=builder /app/target/release/cfg-parser /usr/local/bin/cfgparser
 
-ENTRYPOINT ["/usr/local/bin/mathsolver"]
+ENTRYPOINT ["/usr/local/bin/cfgparser"]

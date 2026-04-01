@@ -1,5 +1,7 @@
+name: cfg-parser
+
 services:
-  mathsolver:
+  cfgparser:
     build:
       context: .
-    image: mathsolver
+    image: cfgparser

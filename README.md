@@ -10,11 +10,11 @@ using a Context-Free Grammar (CFG) engine.
 </p>
 
 <p align="center">
-  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/stargazers"><img src="https://img.shields.io/github/stars/simonesiega-academics/rust-cfg-parser?style=social" alt="GitHub stars" /></a>
-  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/issues"><img src="https://img.shields.io/github/issues/simonesiega-academics/rust-cfg-parser" alt="Open issues" /></a>
-  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/pulls"><img src="https://img.shields.io/github/issues-pr/simonesiega-academics/rust-cfg-parser" alt="Open pull requests" /></a>
-  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/commits/master"><img src="https://img.shields.io/github/last-commit/simonesiega-academics/rust-cfg-parser" alt="Last commit" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/simonesiega-academics/rust-cfg-parser" alt="License" /></a>
+  <a href="https://github.com/simonesiega/cfg-parser/stargazers"><img src="https://img.shields.io/github/stars/simonesiega/cfg-parser?style=social" alt="GitHub stars" /></a>
+  <a href="https://github.com/simonesiega/cfg-parser/issues"><img src="https://img.shields.io/github/issues/simonesiega/cfg-parser" alt="Open issues" /></a>
+  <a href="https://github.com/simonesiega/cfg-parser/pulls"><img src="https://img.shields.io/github/issues-pr/simonesiega/cfg-parser" alt="Open pull requests" /></a>
+  <a href="https://github.com/simonesiega/cfg-parser/commits/master"><img src="https://img.shields.io/github/last-commit/simonesiega/cfg-parser" alt="Last commit" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/simonesiega/cfg-parser" alt="License" /></a>
   <img src="https://img.shields.io/badge/rust-2024%20edition-black?logo=rust" alt="Rust 2024 edition" />
 </p>
 
@@ -71,20 +71,20 @@ cargo test
 Build and run:
 
 ```bash
-docker build -t mathsolver .
-docker run --rm mathsolver
+docker build -t cfgparser .
+docker run --rm cfgparser
 ```
 
 Run with custom input (CLI argument):
 
 ```bash
-docker run --rm mathsolver "(1 + 2) * 3 ="
+docker run --rm cfgparser "(1 + 2) * 3 ="
 ```
 
 Run with custom input (environment variable):
 
 ```bash
-docker run --rm -e MATHSOLVER_INPUT="27 $ 3 =" mathsolver
+docker run --rm -e CFGPARSER_INPUT="27 $ 3 =" cfgparser
 ```
 
 For full Docker workflows, troubleshooting, and compose examples, see [`Docker docs`](docs/md/docker.md).
@@ -129,7 +129,7 @@ The parser reports structured errors such as:
 
 Contributions are welcome.
 
-- For bugs and feature requests, open an [Issue](https://github.com/simonesiega-academics/rust-cfg-parser/issues).
+- For bugs and feature requests, open an [Issue](https://github.com/simonesiega/cfg-parser/issues).
 - For code contributions, open a **Pull Request** with a clear description of the change and its rationale.
 - For direct contact, email me at [simonesiega1@gmail.com](mailto:simonesiega1@gmail.com) or reach out on [GitHub](https://github.com/simonesiega).
 
@@ -140,7 +140,7 @@ This project is licensed under the MIT License. See [`LICENSE`](LICENSE).
 ## Authors 🧑‍💻
 
 <p align="center">
-  <a href="https://github.com/simonesiega-academics/rust-cfg-parser/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=simonesiega-academics/rust-cfg-parser&max=24&columns=12" alt="Contributors" />
+  <a href="https://github.com/simonesiega/cfg-parser/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=simonesiega/cfg-parser&max=24&columns=12" alt="Contributors" />
   </a>
 </p>

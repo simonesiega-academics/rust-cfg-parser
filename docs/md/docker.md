@@ -24,7 +24,7 @@ Current exclusions:
 - `docs`
 
 ### `docker-compose.yml`
-Defines a runnable service (`mathsolver`) and its build configuration.
+Defines a runnable service (`cfgparser`) and its build configuration.
 
 It simplifies local development by enabling one-command workflows with `docker compose` instead of manually using `docker build` + `docker run`.
 
@@ -63,16 +63,16 @@ If `docker info` fails, Docker daemon is not running.
 ### Build image
 
 ```bash
-docker build -t mathsolver .
+docker build -t cfgparser .
 ```
 
-- `-t mathsolver` gives the image a name/tag.
+- `-t cfgparser` gives the image a name/tag.
 - `.` is mandatory: it is the build context path.
 
 ### Inspect image size
 
 ```bash
-docker images mathsolver
+docker images cfgparser
 ```
 
 - The multi-stage build keeps the runtime image minimal by excluding the Rust toolchain from the final stage.
@@ -80,10 +80,10 @@ docker images mathsolver
 ### Run container
 
 ```bash
-docker run --rm mathsolver
+docker run --rm cfgparser
 ```
 
-- Creates a container from `mathsolver` image.
+- Creates a container from `cfgparser` image.
 - Executes the binary.
 - `--rm` auto-removes the container after exit.
 
@@ -92,31 +92,31 @@ docker run --rm mathsolver
 Pass the expression as CLI arguments:
 
 ```bash
-docker run --rm mathsolver "(1 + 2) * 3 ="
+docker run --rm cfgparser "(1 + 2) * 3 ="
 ```
 
-Or use environment variable `MATHSOLVER_INPUT`:
+Or use environment variable `CFGPARSER_INPUT`:
 
 ```bash
-docker run --rm -e MATHSOLVER_INPUT="27 $ 3 =" mathsolver
+docker run --rm -e CFGPARSER_INPUT="27 $ 3 =" cfgparser
 ```
 
 ### Run without auto-removal (for inspection)
 
 ```bash
-docker run --name mathsolver-test mathsolver
+docker run --name cfgparser-test cfgparser
 ```
 
 Then restart same container and attach output:
 
 ```bash
-docker start -a mathsolver-test
+docker start -a cfgparser-test
 ```
 
 Remove it when done:
 
 ```bash
-docker rm mathsolver-test
+docker rm cfgparser-test
 ```
 
 ---
@@ -138,7 +138,7 @@ docker compose up
 ### Compose with custom input
 
 ```bash
-MATHSOLVER_INPUT="2(3+4)=" docker compose run --rm mathsolver
+CFGPARSER_INPUT="2(3+4)=" docker compose run --rm cfgparser
 ```
 
 ### Stop and clean compose resources
@@ -198,7 +198,7 @@ docker logs <container_name_or_id>
 ### Remove one image
 
 ```bash
-docker rmi mathsolver
+docker rmi cfgparser
 ```
 
 ### Remove all stopped containers
@@ -226,8 +226,8 @@ docker system prune -a
 When Rust code changes, rebuild image:
 
 ```bash
-docker build -t mathsolver .
-docker run --rm mathsolver
+docker build -t cfgparser .
+docker run --rm cfgparser
 ```
 
 or with compose:
@@ -246,8 +246,8 @@ You have two options.
 Other users clone the repository and run:
 
 ```bash
-docker build -t mathsolver .
-docker run --rm mathsolver
+docker build -t cfgparser .
+docker run --rm cfgparser
 ```
 
 ### Option B: Publish prebuilt image (easiest for users)
@@ -255,26 +255,26 @@ docker run --rm mathsolver
 Tag local image:
 
 ```bash
-docker tag mathsolver <dockerhub-user>/mathsolver:latest
+docker tag cfgparser <dockerhub-user>/cfgparser:latest
 ```
 
 Push to registry:
 
 ```bash
-docker push <dockerhub-user>/mathsolver:latest
+docker push <dockerhub-user>/cfgparser:latest
 ```
 
 Users run directly:
 
 ```bash
-docker run --rm <dockerhub-user>/mathsolver:latest
+docker run --rm <dockerhub-user>/cfgparser:latest
 ```
 
 You can also version tags:
 
 ```bash
-docker tag mathsolver <dockerhub-user>/mathsolver:0.1.0
-docker push <dockerhub-user>/mathsolver:0.1.0
+docker tag cfgparser <dockerhub-user>/cfgparser:0.1.0
+docker push <dockerhub-user>/cfgparser:0.1.0
 ```
 
 ---
@@ -287,7 +287,7 @@ Cause: missing build context path.
 Fix:
 
 ```bash
-docker build -t mathsolver .
+docker build -t cfgparser .
 ```
 
 ### Error about `dockerDesktopLinuxEngine` / daemon not found
@@ -304,7 +304,7 @@ If you used `--rm`, it is removed automatically after run.
 To keep it visible:
 
 ```bash
-docker run --name mathsolver-test mathsolver
+docker run --name cfgparser-test cfgparser
 ```
 
 ### Port mapping questions
@@ -328,10 +328,10 @@ This project is a CLI binary, not a web server, so no `-p` mapping is needed.
 
 ```bash
 # Build
-docker build -t mathsolver .
+docker build -t cfgparser .
 
 # Run once (auto remove container)
-docker run --rm mathsolver
+docker run --rm cfgparser
 
 # Compose first run
 docker compose up --build
@@ -349,10 +349,10 @@ docker images
 docker ps -a
 
 # Remove named container
-docker rm mathsolver-test
+docker rm cfgparser-test
 
 # Remove image
-docker rmi mathsolver
+docker rmi cfgparser
 ```
 
 ---

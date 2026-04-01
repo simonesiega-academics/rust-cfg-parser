@@ -1,6 +1,6 @@
-# MathSolver Grammar Specification (CFG)
+# CFG Parser Grammar Specification (CFG)
 
-This document defines the context-free grammar (CFG) used by MathSolver
+This document defines the context-free grammar (CFG) used by cfg-parser
 to parse and evaluate arithmetic expressions.
 
 It serves as a production-oriented reference for contributors

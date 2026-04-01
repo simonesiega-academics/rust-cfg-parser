@@ -1172,7 +1172,7 @@ fn resolve_input_expression() -> String {
         return args.join(" ");
     }
 
-    if let Ok(input) = env::var("MATHSOLVER_INPUT") {
+    if let Ok(input) = env::var("CFGPARSER_INPUT") {
         if !input.trim().is_empty() {
             return input;
         }

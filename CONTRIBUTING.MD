@@ -1,15 +1,15 @@
-<h1 align="center">Contributing to CFG PARSER</h1>
+<h1 align="center">Contributing to cfg-parser</h1>
 
 <p align="center">
-  Guidelines for contributing to <strong>CFG PARSER</strong>.
+  Guidelines for contributing to <strong>cfg-parser</strong>.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/simonesiega-academics/rust-cfg-parser?style=social" />
-  <img src="https://img.shields.io/github/last-commit/simonesiega-academics/rust-cfg-parser" />
-  <img src="https://img.shields.io/github/issues-pr/simonesiega-academics/rust-cfg-parser" />
-  <img src="https://img.shields.io/github/issues/simonesiega-academics/rust-cfg-parser" />
-  <img src="https://img.shields.io/github/license/simonesiega-academics/rust-cfg-parser" />
+  <img src="https://img.shields.io/github/stars/simonesiega/cfg-parser?style=social" />
+  <img src="https://img.shields.io/github/last-commit/simonesiega/cfg-parser" />
+  <img src="https://img.shields.io/github/issues-pr/simonesiega/cfg-parser" />
+  <img src="https://img.shields.io/github/issues/simonesiega/cfg-parser" />
+  <img src="https://img.shields.io/github/license/simonesiega/cfg-parser" />
 </p>
 
 ## Quick start 🚀
@@ -115,4 +115,4 @@ For direct contact:
 - Email: simonesiega1@gmail.com
 - GitHub: https://github.com/simonesiega
 
-Thanks again for contributing to MathSolver.
+Thanks again for contributing to CFG Parser.
