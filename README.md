@@ -45,7 +45,7 @@ It supports nested expressions, implicit multiplication, exponentiation, and n-t
 | `( )` | Groups expressions and controls precedence | `(1 + 2) * 3 =` |
 | `implicit *` | Multiplies adjacent terms without `*` | `2(3+4) =` |
 
-## Grammar Docs
+## Documentation and design details are documented in the `docs` directory:
 
 - Grammar details: [`Grammar`](docs/md/grammar.md)
 - Architecture overview: [`Architecture`](docs/md/architecture.md)
